@@ -1,0 +1,17 @@
+{
+    "name":"erbasadem/translate-helper",
+    "description":"basic yandex translate api helper",
+    "authors":[{
+        "name":"Adem Erbas",
+        "email":"erbasadem@gmail.com"
+    }],
+    "require":{
+        "yandex/translate-api": "1.5.x"
+    },
+    
+    "autoload": {
+        "psr-4": {
+            "TranslateAPI\\":"src//"
+        }
+    }
+}
