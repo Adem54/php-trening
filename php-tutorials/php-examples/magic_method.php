@@ -32,7 +32,16 @@ class Test {
     {
         echo "Hello method2";
     }
+
+    //!Bir text icerisinde bulunan emailleri asagidaki gibi bulabiliriz...
+    public function findEmails(string $text)
+    {
+        preg_match_all("/[\._a-zA-Z0-9-]+@[\._a-zA-Z0-9-]+/i", $text, $matches);
+        return $matches;
+    }
+
 }
+
 
 //!HARIKA BIR OLAY...DINAMIK OLARAK METHODLARI CALISTIRABILIYORUZ....ILK DEFA GORDUM
 $instance2 = new Test();
@@ -54,5 +63,23 @@ $invoker = new Invoker();
 
 $invoker->executeMethod($test, "method2");
 $invoker->executeMethod($test, "method1");
+
+$lorem = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is adem5434@gmail.com that it has a more-or-less normal distribution of letters, zehra@gmail.com as opposed to using 'Content here, content here', making it look like readable English. ";
+$result = $test->findEmails($lorem);
+var_dump($result);
+
+$arr = [
+    ["id"=>1, "name"=>"Adem"],
+    ["id"=>2, "name"=>"Zeynep"],
+    ["id"=>3, "name"=>"Zehra"],
+];
+
+echo "<br>!!!!!!!!!!!!<br>";
+$myRes = print_r($arr, true);
+echo gettype($myRes);
+
+
+
+
 
 ?>
