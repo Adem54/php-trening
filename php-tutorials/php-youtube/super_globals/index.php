@@ -130,3 +130,58 @@ if (!$email) {
 //!isset-boyle bir data var mi...
 
 ?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<form action="" method="GET">
+    <input type="text" value="" name="name">
+    <button type="submit">Send</button>
+</form>
+</body>
+</html>
+<!--
+!HTML URL ENCODING
+html url encoding hexadecimal kodunu url e yazar
+decimal-10lu, hexadecimal 16 li
+@ ASCI TABLOSUNDA KI DECIMAL KARSILIGI 64 TUR- HEXADECIMAL KARSILIGI ISE 40 TIR %40 DIYE GELIR ISTE @ YAZILINCA ASCI TABLOSU UZERINDEKI HESAPLAMA DAN HEXADECIMAL KARSILIGI OLAN %40 IN GELMESI ISLEMINE URL-ENCODED DIYORUZ
+input- @adem girersek url de ?name=%40adem
+input adem erbas girersek url de ?name=adem+erbas
+
+!URL kodlama, tarayıcının ve sunucunun, gönderilen verileri herhangi bir belirsizlik veya URL'deki özel karakterlerden kaynaklanan sorunlar olmadan doğru şekilde yorumlayabilmesini sağlar. Bu kodlama işlemi, bir form gönderildiğinde tarayıcı tarafından otomatik olarak gerçekleştirilir.
+
+URL kodlama bağlamında ASCII kullanılır çünkü URL'ler başlangıçta yalnızca ASCII karakterlerini iletebilecek şekilde tasarlanmıştır. Bu aralığın dışındaki herhangi bir karakterin veya URL'lerde özel anlamları olan karakterlerin (boşluk, ve işareti ve eğik çizgi gibi) kodlanması gerekir. ASCII kullanımı, bu karakterlerin standart, tanınabilir bir formatta kodlanmasını sağlayarak, farklı web teknolojileri ve platformları arasında güvenilir veri aktarımına ve yorumlanmasına olanak tanır.
+URL ENDODING OLAYININ GOOGLE BROWSER LARDA ARAMA YAPTIGMIZ ZAAMN DA GOREBILIRIZ
+
+!MIME TYPE(DOSYA KIMLIK TANIMLANMASI) 
+Sunucu ya bir dosya yuklendiginde sunucu bu dosyanin ilk olarak uzantisina bakar, yani mime-type ina bakar 
+index.html=>text/html dir, suncu mimetype ina bakar ve mime-type inin text/html olmasindan onun html oldugunu anlar, uzerinde islemi ona gore yapacaktir
+index.php=>text/php dir mimetype.----Sunucu once dosynin mimetype ina bakar ve dosyayi ona gore calistiriri..bu cok onemli... png,xml,html,video mu...ne oldugunu anlamasi gerekiyor....BUNU IYI ANLAYALIM
+
+SSL
+GOOGLE CHROME TUM SITELERIN SSL OLMASINI ISTEDIGI ICIN, HTTP ILE GIRILEN SITELERE GUVENLI DEGIL DIYECEKTIR 
+E-COMMERCIELLE SITELERINDE DE SSL ZORUNLUDUR
+SUNUCUYA GONDERILEN USERNAME-PASSWORD U BIZDEN SIFRELI BIR SEKILDE GONDERIYOR...VE TEKRAR CLIENT A USERNAME-PASSWORDU SIFRE ILE GONDERIYOR VA ARAYA HACKERLARIN GIRIP DE USERNAME-PASSWORDUNUN CALISNMASIN ONLUYOR... 
+HTTP-SSL SIZ -GUVENSIZ
+HTTPS - SSL LI-GUVENLI
+
+HTTP DURUM KODLARI 
+200-SUCCESS
+300-YONLENDIRM KODLARI 
+HTTP 301- YONLENDIRME YAPILACAGINI GOSTERIR..GELEN ISTEGIN, BIR URL IN BASKA BIR URLE YONLENDIRILMEK ISTENDIGINDE
+SITEMIZ ISMI DEGISTI, AMA ESKI DOMAIN I UZUN SURE KULLANDIGMZ ICIN, ESKI SITEEY GELENLERIN YENI SITEYE YONLENDIRILMESINI ISTEDGINIZDE KULLAN...302 DE GECICI OLARAK YENI DOMAINA GITTIGINDE 
+304-
+401-SUNUCU TARAFINDAN ISLENEMIYOR, YANLI BIR SOZ DIZIMINDEN KAYNAKLANIYOR--YETKIN YOK--AUTHENTICATION
+404-nOT FOUND
+
+501(INTERNAL SERVER ERROR)
+HATA SUNUCUDAN KAYNAKLIDIR, SUNUCU RESPONSE  VERECEK GEREKSINIMLERE SAHIP DEGIL, YANI HATA SUNUCUYA GONDERILEN ISTEGIN GONDERILDIGI ENDPOINT IN DUZELTILMESI GEREKLIDIR
+503-SERVICE UNAVAILABLE
+
+ -->
