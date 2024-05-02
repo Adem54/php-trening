@@ -7,6 +7,11 @@
 class Userscontr extends Users
 {
 
+    public function createUser(string $username, string $email)
+    {
+        $result = $this->setUser($username, $email);
+        return $result;
+    }
 }
 
 

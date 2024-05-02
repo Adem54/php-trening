@@ -22,6 +22,23 @@ class Users extends Dbh
             echo $ex->getMessage();
        }
     }
+
+
+    //Bu insert islemi de controller icerisinde invoke edilecektir, cunku biz modal class imizi tamamen disariya kapatmak istiyoruz sadece view-controller tarafindan erisilip oralarda call-invoke edilsin istiyoruz...ONEMLI
+    //
+    protected function setUser(string $username, string $email)
+    {
+       try {
+        $sql = "INSERT INTO user (username,email) VALUES(?, ?)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$username]);
+        return ($stmt->rowCount() > 0);
+
+       } catch (PDOException $ex) 
+       {
+            echo $ex->getMessage();
+       }
+    }
 }
 
 ?>
