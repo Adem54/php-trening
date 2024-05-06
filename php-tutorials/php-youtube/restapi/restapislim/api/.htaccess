@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /main/php-trening/php-tutorials/php-youtube/restapi/restapislim/api/
+
+# Pass requests that don't directly match files to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
