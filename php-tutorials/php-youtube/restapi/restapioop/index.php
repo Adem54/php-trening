@@ -7,9 +7,13 @@ spl_autoload_register(function($class)
 });
 
 //!ErrorHandler.php dosyasindaki ErrorHandler class ini generic exceptionhandler olarak index.php de kulanablmek icin, bu methoda parametreyi bu sekilde geceriz..coooook onemli burasi 
+
+set_exception_handler("ErrorHandler::handleError");
 set_exception_handler("ErrorHandler::handleException");
 //set_exception_handler buarasi , spl_autoload_register dan yani class otomaitk olrak reequire edildikten sonra kullanilmalidir
+//!Bu error-handling try-catch devreye girmezse devreye girecek ve global bir sekildedir, ve her turlu hatayi yakalar, hatalari yakalama konusunda isimizi garantiye almis oluruz bir nevi
 /*
+
 !ISTE BU ERRORHANDLER I KULLANINCA  COK DAHA DETAYLI VE HATANIN NERDEN GOSTEREN CIKTI ALIRIZ...VE BURASI COK KRITIK ONEME SAHIPTIR
 Access denied for user 'adem'@'localhost' (using password: YES){
     "code": 0,
@@ -19,10 +23,6 @@ Access denied for user 'adem'@'localhost' (using password: YES){
 }
 
 */
-
-
-
-
 header("Content-type:application/json; charset=UTF-8");
 //!BURAYI KULLANMAZSAK DEFAULT OLARAK text/html; charset=UTF-8 CONTENT-TYPE RETURN DATASINDA BU SEKIKLDE GONDER,AMA BIZ BUNUN JSON OLARAK DONMESIN ISTIERIZ ONDAN DOLAYI DA BU SATIRI KULLANMAMIZ GEREKIR
 

@@ -32,10 +32,10 @@ class ProductGateway
 
     public function create(array $newProduct):string
     {
-      try {
-     // ! 1.yontem  $sql = "INSERT INTO products (name,size,is_available) values(?,?,?)";  // $data = [ $newProduct["name"],$newProduct["size"],$newProduct["is_available"] ]; // $stmt->execute($data);
-     // ! 2.yontem  $sql = "INSERT INTO products (name,size,is_available) values(:name, :size, :is_available)";    // $newProduct ["name"=>"Product12", "size"=>17, "is_available"=>true]; // $stmt->execute($newProduct);
-     //!3.yontem de asagidaki gibi olan
+   
+        // ! 1.yontem  $sql = "INSERT INTO products (name,size,is_available) values(?,?,?)";  // $data = [ $newProduct["name"],$newProduct["size"],$newProduct["is_available"] ]; // $stmt->execute($data);
+        // ! 2.yontem  $sql = "INSERT INTO products (name,size,is_available) values(:name, :size, :is_available)";    // $newProduct ["name"=>"Product12", "size"=>17, "is_available"=>true]; // $stmt->execute($newProduct);
+        //!3.yontem de asagidaki gibi olan
         $sql = "INSERT INTO products (name,size,is_available) values(:name, :size, :is_available)";
         $stmt = $this->conn->prepare($sql);
        // $newProduct ["name"=>"Product12", "size"=>17, "is_available"=>true];
@@ -46,11 +46,53 @@ class ProductGateway
         $stmt->execute();
         $result = $this->conn->lastInsertId();
         return $result;
-      } catch (\Throwable $th) {
-          echo($th->getMessage());
-          return "";
-      }
+     
     }
+
+    //id li, spesifik delete, update veya check islemlerinde kullanacagimz islemdir burasi 
+    public function get(string $id):array | false
+    {
+        $sql = "SELECT * FROM products where id= :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(":id",$id, PDO::PARAM_INT);
+       $stmt->execute();
+       $data = $stmt->fetch(PDO::FETCH_ASSOC);
+       return $data;//data var ise array dondurur data yi, data yok ise false dondurur ondan dolayi da biz bu sekilde data yi 2 farkli tip de dondurebiliyoruz
+    }
+
+    public function update(array $current, array $new):int //affected numberrows donecegiz ondan dolayi int
+    {
+   
+        // ! 1.yontem  $sql = "INSERT INTO products (name,size,is_available) values(?,?,?)";  // $data = [ $newProduct["name"],$newProduct["size"],$newProduct["is_available"] ]; // $stmt->execute($data);
+        // ! 2.yontem  $sql = "INSERT INTO products (name,size,is_available) values(:name, :size, :is_available)";    // $newProduct ["name"=>"Product12", "size"=>17, "is_available"=>true]; // $stmt->execute($newProduct);
+        //!3.yontem de asagidaki gibi olan
+        $sql = "UPDATE products SET name= :name, size= :size, is_available= :is_available where id= :id";
+        $stmt = $this->conn->prepare($sql);
+       // $newProduct ["name"=>"Product12", "size"=>17, "is_available"=>true];
+        // $stmt->execute($newProduct);
+        $stmt->bindValue(":name", $new["name"] ?? $current["name"], PDO::PARAM_STR);
+        $stmt->bindValue(":size", $new["size"] ?? $current["size"],PDO::PARAM_INT);
+        $stmt->bindValue(":is_available", (bool)($new["is_available"] ??  $current["is_available"]), PDO::PARAM_BOOL);
+        $stmt->bindValue(":id", $current["id"],PDO::PARAM_INT);
+
+        $stmt->execute();
+        $result = $stmt->rowCount();
+        return $result;
+     
+    }
+
+
+    public function delete(string $id):int //!rowcount u return edecegiz
+    {
+        $sql = "DELETE  FROM products where id= :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(":id",$id, PDO::PARAM_INT);
+       $stmt->execute();
+       $result = $stmt->rowCount();
+       
+       return $result;//data var ise array dondurur data yi, data yok ise false dondurur ondan dolayi da biz bu sekilde data yi 2 farkli tip de dondurebiliyoruz
+    }
+
 }
 
 
